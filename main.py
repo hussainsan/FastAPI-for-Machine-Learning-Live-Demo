@@ -35,7 +35,7 @@ def generate_image(
     prompt: str,
     *,
     seed: int | None = None,
-    num_inference_steps: int = 50,
+    num_inference_steps: int = 10,
     guidance_scale: float = 7.5
 ):
     image = obtain_image(
@@ -53,7 +53,7 @@ def generate_image_memory(
     prompt: str,
     *,
     seed: int | None = None,
-    num_inference_steps: int = 50,
+    num_inference_steps: int = 10,
     guidance_scale: float = 7.5
 ):
     image = obtain_image(

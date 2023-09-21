@@ -1,3 +1,7 @@
+import sys
+print(sys.path)
+import torch
+print(torch.__version__)
 from pathlib import Path
 
 import torch
@@ -11,15 +15,13 @@ token = token_path.read_text().strip()
 pipe = StableDiffusionPipeline.from_pretrained(
     "CompVis/stable-diffusion-v1-4",
     revision="fp16",
-    torch_dtype=torch.float16,
+    #torch_dtype=torch.float16,
     use_auth_token=token,
 )
 
-pipe.to("cuda")
+pipe.to("mps")
 
 # prompt = "a photograph of an astronaut riding a horse"
-
-
 # image = pipe(prompt)["sample"][0]
 
 
@@ -27,10 +29,12 @@ def obtain_image(
     prompt: str,
     *,
     seed: int | None = None,
-    num_inference_steps: int = 50,
+    num_inference_steps: int = 10,
     guidance_scale: float = 7.5,
 ) -> Image:
-    generator = None if seed is None else torch.Generator("cuda").manual_seed(seed)
+    # generator = None if seed is None else torch.Generator("cuda").manual_seed(seed)
+    generator = None if seed is None else torch.Generator("mps").manual_seed(seed)
+
     print(f"Using device: {pipe.device}")
     image: Image = pipe(
         prompt,
@@ -39,6 +43,5 @@ def obtain_image(
         generator=generator,
     ).images[0]
     return image
-
 
 # image = obtain_image(prompt, num_inference_steps=5, seed=1024)

@@ -16,3 +16,23 @@ This repository contains the files to build your very own AI image generation we
 ![Screenshot 2022-12-15 at 11 34 39 AM](https://user-images.githubusercontent.com/37101144/207929696-886ccfe3-6d86-4674-8aca-0844fb795727.png)
 
 ![Screenshot 2022-12-15 at 11 35 51 AM](https://user-images.githubusercontent.com/37101144/207929748-afafc036-cbf6-48aa-a7b2-b64d66c32b75.png)
+
+
+### instruction
+### first, get a token from hugginface and place it in token.txt
+
+### install dependencies
+```
+pip install -r requirements.txt
+pip install -r dev-requirements.txt
+```
+
+### run fastapi server
+```
+python main.py
+```
+
+### run the below file to get a propmt of input
+```
+./invoke.sh
+```
